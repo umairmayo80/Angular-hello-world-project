@@ -20,33 +20,37 @@ export class RoomsComponent implements OnInit {
     totalRooms: 20,
   };
 
-  roomsList: RoomObjectInfo[] = [
-    {
-      roomNumber:1,
-      roomType: 'A1',
-      price: 12000,
-      photos: 'avs',
-      checkinTime: new Date(2000, 12, 1),
-    },
-    {
-      roomNumber:2,
-      roomType: 'B1',
-      price: 8000,
-      photos: 'avs',
-      checkinTime: new Date(2000, 12, 1),
-    },
-    {
-      roomNumber:3,
-      roomType: 'C1',
-      price: 2000,
-      photos: 'avs',
-      checkinTime: new Date(2000, 12, 1),
-    },
-  ];
+  roomsList: RoomObjectInfo[] = [];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // to initialize the Object or load data from api
+    this.roomsList = [
+      {
+        roomNumber:1,
+        roomType: 'A1',
+        price: 12000,
+        photos: 'avs',
+        checkinTime: new Date(2000, 12, 1),
+      },
+      {
+        roomNumber:2,
+        roomType: 'B1',
+        price: 8000,
+        photos: 'avs',
+        checkinTime: new Date(2000, 12, 1),
+      },
+      {
+        roomNumber:3,
+        roomType: 'C1',
+        price: 2000,
+        photos: 'avs',
+        checkinTime: new Date(2000, 12, 1),
+      },
+    ];
+
+  }
 
   toggle(): void {
     this.hideRooms = !this.hideRooms;
@@ -57,5 +61,19 @@ export class RoomsComponent implements OnInit {
   selectRoom(room: RoomObjectInfo){
     this.selectedRoom = room;
     console.log(room);
+  }
+
+
+  addRoom():void {
+    const room: RoomObjectInfo =       {
+      roomNumber:3,
+      roomType: 'C1',
+      price: 2000,
+      photos: 'avs',
+      checkinTime: new Date(2000, 12, 1),
+    }
+    
+    // this.roomsList.push(room) //this will not work if the child has .onPush ChangeDetectionStrategy
+    this.roomsList = [...this.roomsList, room] //create new instance and then send it to child
   }
 }

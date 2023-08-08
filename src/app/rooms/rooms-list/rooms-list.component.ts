@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output , ChangeDetectionStrategy} from '@angular/core';
 import { RoomObjectInfo } from '../rooms';
 
 @Component({
   selector: 'app-rooms-list',
   templateUrl: './rooms-list.component.html',
-  styleUrls: ['./rooms-list.component.scss']
+  styleUrls: ['./rooms-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RoomsListComponent implements OnInit {
 

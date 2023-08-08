@@ -16,6 +16,11 @@
   <!-- {{ roomsList | json }} -->
 </div>
 
+
+<div>
+    <button (click)="addRoom()">Add new Room</button>
+</div>
+
 <div>
     <app-rooms-list [rooms]="roomsList" (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
