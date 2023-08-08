@@ -1,3 +1,17 @@
 <h1>Hello World</h1>
+<!-- <p>Welcome to {{ hotelName }}</p> we can directly access the properties of the same class in the .html
+Here hotelName is the property of the rooms.component.ts RoomsComponent class so we cannot directly access it-->
 <p>Angular Sample Project</p>
-<app-rooms></app-rooms>
+
+<div [ngSwitch]="role">
+    <div *ngSwitchCase="'user'"> <!--Using '' to make it string otherwise it will treat it as a varibale-->
+        Welcome User
+    </div>
+    <div *ngSwitchCase="'admin'">
+        <app-rooms></app-rooms>
+    </div>
+    <div *ngSwitchDefault="">
+        <h1>You are not Authorized to view this page</h1>
+    </div>
+    
+</div>
