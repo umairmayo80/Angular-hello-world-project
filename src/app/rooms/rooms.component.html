@@ -17,8 +17,13 @@
 </div>
 
 <div>
-    <app-rooms-list [rooms]="roomsList"></app-rooms-list>
-    
+    <app-rooms-list [rooms]="roomsList" (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
 
 <button (click)="toggle()">Toggle Rooms Info visibility</button>
+
+
+<div *ngIf="selectedRoom">
+    <p>selected room</p>
+    {{selectedRoom | json}}
+</div>

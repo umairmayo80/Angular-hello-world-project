@@ -1,45 +1,56 @@
 <p>rooms-list works!</p>
 <div>
-    <!-- ngfor for iterating over an collection -->
-    <table>
-      <thead>
-        <th>Room#</th>
-        <th>Index</th>
-        <th>Even</th>
-        <th>Type</th>
-        <th>Price</th>
-        <th>Photos</th>
-        <th>checkinTime</th>
-      </thead>
-      <tbody>
-        <tr  *ngFor="let room of rooms | slice :0:1; let evenFlag =even; let indx = index;" [ngClass]="evenFlag? 'even' : 'odd'">
-          <td>
-            {{ room.roomNumber }}
-          </td>
-          <td>
-            {{ indx+1.6765797 | number: '1.2-3' : 'en-us'}}
-          </td>
-          <td>
-            {{ evenFlag?? false }}
-          </td>
-          <td>
-            {{ room.roomType }}
-          </td>
-          <td>
-              <!-- the default currency is usd -->
-            {{ room.price | currency : 'GBP'}}
-          </td>
-          <td>
-            {{ room.photos | uppercase}}
-          </td>
-          <td>
-              <!-- | is the pipe operator -->
-            <!-- {{ room.checkinTime | date : 'medium'}} -->
-            <!-- we can also specify the format -->
-            {{ room.checkinTime | date : 'dd/MM/yyyy'}}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+  <!-- ngfor for iterating over an collection -->
+  <table class="">
+    <thead>
+      <th>Room#</th>
+      <th>Index</th>
+      <th>Even</th>
+      <th>Type</th>
+      <th>Price</th>
+      <th>Photos</th>
+      <th>checkinTime</th>
+      <th>Select</th>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let room of rooms | slice : 0 : 3;
+          let evenFlag = even;
+          let indx = index
+        "
+        [ngClass]="evenFlag ? 'even' : 'odd'"
+      >
+        <td>
+          {{ room.roomNumber }}
+        </td>
+        <td>
+          {{ indx + 1.6765797 | number : "1.2-3" : "en-us" }}
+        </td>
+        <td>
+          {{ evenFlag ?? false }}
+        </td>
+        <td>
+          {{ room.roomType }}
+        </td>
+        <td>
+          <!-- the default currency is usd -->
+          {{ room.price | currency : "GBP" }}
+        </td>
+        <td>
+          {{ room.photos | uppercase }}
+        </td>
+        <td>
+          <!-- | is the pipe operator -->
+          <!-- {{ room.checkinTime | date : 'medium'}} -->
+          <!-- we can also specify the format -->
+          {{ room.checkinTime | date : "dd/MM/yyyy" }}
+        </td>
+        <td>
+            <button class="btn btn-primary" (click)="selectRoom(room)">Select
+            </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

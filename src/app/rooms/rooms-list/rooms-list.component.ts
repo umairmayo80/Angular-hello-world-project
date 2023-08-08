@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RoomObjectInfo } from '../rooms';
 
 @Component({
@@ -12,7 +12,15 @@ export class RoomsListComponent implements OnInit {
   // Then we can pass data to this component using <app-rooms-list rooms= "data">;
   @Input() rooms:RoomObjectInfo[] = [];
 
+
+  //create an output event function that will send the required data
+  @Output() selectedRoom = new EventEmitter<RoomObjectInfo>();
+
   constructor() { }
+
+  selectRoom(room: RoomObjectInfo){
+    this.selectedRoom.emit(room);
+  }
 
   ngOnInit(): void {
   }
