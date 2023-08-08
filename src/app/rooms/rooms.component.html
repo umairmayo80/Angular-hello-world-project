@@ -1,0 +1,11 @@
+<p>rooms works!</p>
+<p>Welcome to {{hotelName}}</p>
+
+<div [hidden]="hideRooms">
+    <p>Number of rooms: <span [innerText]="numberOfRooms"></span></p>  
+    <!-- [] is called box syntax-->
+</div>
+
+<button (click)="toggle()">Toggle Rooms Info visibility</button>
+
+
