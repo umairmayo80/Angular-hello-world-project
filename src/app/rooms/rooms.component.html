@@ -12,50 +12,13 @@
 <!-- ngif directive to conditionally display or remove an html element -->
 <div *ngIf="rooms.availableRooms > 0">
   Rooms List
-  {{ roomsList }}
-  </div>
-
-  <div>
-  <!-- ngfor for iterating over an collection -->
-  <table>
-    <thead>
-      <th>Room#</th>
-      <th>Index</th>
-      <th>Even</th>
-      <th>Type</th>
-      <th>Price</th>
-      <th>Photos</th>
-      <th>checkinTime</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let room of roomsList; let evenFlag =even; let indx = index;">
-        <td>
-          {{ room.roomNumber }}
-        </td>
-        <td>
-          {{ indx+1 }}
-        </td>
-        <td>
-          {{ evenFlag?? false }}
-        </td>
-        <td>
-          {{ room.roomType }}
-        </td>
-        <td>
-          {{ room.price }}
-        </td>
-        <td>
-          {{ room.photos }}
-        </td>
-        <td>
-          {{ room.checkinTime }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- json pipe to view the data on the browser of an object -->
+  <!-- {{ roomsList | json }} -->
 </div>
 
-
-
+<div>
+    <app-rooms-list [rooms]="roomsList"></app-rooms-list>
+    
+</div>
 
 <button (click)="toggle()">Toggle Rooms Info visibility</button>

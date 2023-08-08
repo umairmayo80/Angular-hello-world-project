@@ -4,15 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RoomsComponent } from './rooms/rooms.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RoomsComponent
+    RoomsComponent,
+    RoomsListComponent
   ], //This property is an array that specifies the components, directives, and pipes that belong to this module.
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent] //bootstrap: [AppComponent]: This property is an array that specifies the root component that should be bootstrapped when the application starts. In this case, the "AppComponent" is the root component.
