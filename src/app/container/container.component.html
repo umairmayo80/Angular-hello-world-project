@@ -1,2 +1,9 @@
 <!-- <p>container works!</p> -->
+
+<!-- we can define the order using the select property -->
+<ng-content select="app-employee"></ng-content>
 <ng-content></ng-content>
+<ng-content select="app-rooms"></ng-content>
+
+<!-- First employee compoenet will be loaded, then any, then app-rooms -->
+

@@ -8,8 +8,8 @@ Here hotelName is the property of the rooms.component.ts RoomsComponent class so
 </div> -->
 
 
-<div [ngSwitch]="role">
-    <div *ngSwitchCase="'user'"> <!--Using '' to make it string otherwise it will treat it as a varibale-->
+<!-- <div [ngSwitch]="role">
+    <div *ngSwitchCase="'user'"> <!--Using '' to make it string otherwise it will treat it as a varibale->
         Welcome User
     </div>
     <div *ngSwitchCase="'admin'">
@@ -19,14 +19,20 @@ Here hotelName is the property of the rooms.component.ts RoomsComponent class so
         <h1>You are not Authorized to view this page</h1>
     </div>
     
-</div>
+</div> -->
 
+
+
+
+<app-container>
+    <app-rooms></app-rooms>
+    <app-employee></app-employee>
+    <p>This is content is projected by parent app.component.html taking advantage of ng-content tag in the child container-component</p>
+    <p>Para2</p>
+
+</app-container>
 
 <div #templateReferenceName>
 
 </div>
 
-
-<app-container>
-    <p>This is content is projected by parent app.component.html taking advantage of ng-content tag in the child container-component</p>
-</app-container>
