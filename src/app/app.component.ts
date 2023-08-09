@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   title = 'hotelinvertory';
   role = 'admin';
 
-  @ViewChild('user',{read: ViewContainerRef, static:true}) vcr!: ViewContainerRef;
+  @ViewChild('user',{read: ViewContainerRef}) vcr!: ViewContainerRef;
   @ViewChild('templateReferenceName',{ static:true}) htmlElement!: ElementRef;
   
 
