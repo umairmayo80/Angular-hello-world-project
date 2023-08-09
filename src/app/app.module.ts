@@ -7,13 +7,15 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { HeaderComponent } from './header/header.component';
+import { ContainerComponent } from './container/container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomsComponent,
     RoomsListComponent,
-    HeaderComponent
+    HeaderComponent,
+    ContainerComponent
   ], //This property is an array that specifies the components, directives, and pipes that belong to this module.
   imports: [
     BrowserModule,
