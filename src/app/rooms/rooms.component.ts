@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Room, RoomObjectInfo } from './rooms';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked{
   hotelName = 'KingsMen Hotel';
   numberOfRooms: number = 10;
 
   hideRooms: boolean = false;
 
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
 
   rooms: Room = {
@@ -25,6 +27,9 @@ export class RoomsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+
+    console.log(this.headerComponent)
+
     // to initialize the Object or load data from api
     this.roomsList = [
       {
@@ -77,5 +82,16 @@ export class RoomsComponent implements OnInit {
     
     // this.roomsList.push(room) //this will not work if the child has .onPush ChangeDetectionStrategy
     this.roomsList = [...this.roomsList, room] //create new instance and then send it to child
+  }
+
+  ngAfterViewInit(): void {
+    // After the entire view is initialized
+      console.log(this.headerComponent)
+
+      this.headerComponent.title = "Kingsman Hotel"
+  }
+
+  ngAfterViewChecked(): void {
+    this.headerComponent.title = "Kingsman Hotel-AfterViewChecked"
   }
 }
