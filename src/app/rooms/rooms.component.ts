@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Room, RoomObjectInfo } from './rooms';
 import { HeaderComponent } from '../header/header.component';
+import { RoomsService } from './services/rooms.service';
 
 @Component({
   selector: 'app-rooms',
@@ -33,36 +34,17 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   roomsList: RoomObjectInfo[] = [];
 
-  constructor() {}
+  // just define the dependency in the constructor and Angular will automatically fill it
+  // public means it can be accessed in the .html file, private means it can only be accesed in the .ts file
+  constructor(private roomService: RoomsService) {}
 
   ngOnInit(): void {
     // this will only be available if the viewChild is static true
     console.log(this.headerComponent);
 
     // to initialize the Object or load data from api
-    this.roomsList = [
-      {
-        roomNumber: 1,
-        roomType: 'A1',
-        price: 12000,
-        photos: 'avs',
-        checkinTime: new Date(2000, 12, 1),
-      },
-      {
-        roomNumber: 2,
-        roomType: 'B1',
-        price: 8000,
-        photos: 'avs',
-        checkinTime: new Date(2000, 12, 1),
-      },
-      {
-        roomNumber: 3,
-        roomType: 'C1',
-        price: 2000,
-        photos: 'avs',
-        checkinTime: new Date(2000, 12, 1),
-      },
-    ];
+    this.roomsList = this.roomService.getRooms();
+   
   }
 
   toggle(): void {
