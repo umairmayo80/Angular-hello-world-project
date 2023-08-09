@@ -1,4 +1,4 @@
-import { Component , OnInit,ViewChild, AfterViewInit, ViewContainerRef} from '@angular/core';
+import { Component , OnInit,ViewChild, AfterViewInit, ViewContainerRef, ElementRef} from '@angular/core';
 import { RoomsComponent } from './rooms/rooms.component';
 
 @Component({
@@ -15,21 +15,26 @@ export class AppComponent implements OnInit, AfterViewInit{
   role = 'admin';
 
   @ViewChild('user',{read: ViewContainerRef, static:true}) vcr!: ViewContainerRef;
+  @ViewChild('templateReferenceName',{ static:true}) htmlElement!: ElementRef;
+  
+
 
   // only works if the viewChild static property is true
   ngOnInit(): void {
     // now we can create component on runtime /dynamically
       // const componentRef = this.vcr.createComponent(RoomsComponent)
       console.log('onInit')
+      console.log(this.htmlElement)
+      this.htmlElement.nativeElement.innerText = 'This text is created using ngTemplateReference'
   }
 
   ngAfterViewInit(): void {
         // now we can create component on runtime /dynamically
-        const componentRef = this.vcr.createComponent(RoomsComponent)      
+        // const componentRef = this.vcr.createComponent(RoomsComponent)      
         console.log('AfterViewInit')
         // now we can access the properties of the component
-        componentRef.instance.numberOfRooms = 50;
-       }
+        // componentRef.instance.numberOfRooms = 50;
+  }
 
 
 }
