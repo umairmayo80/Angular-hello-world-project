@@ -24,7 +24,8 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   hideRooms: boolean = false;
 
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
-  @ViewChildren(HeaderComponent) headerChildreComponent!: QueryList<HeaderComponent>;
+  @ViewChildren(HeaderComponent)
+  headerChildreComponent!: QueryList<HeaderComponent>;
 
   rooms: Room = {
     availableRooms: 10,
@@ -43,14 +44,13 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     console.log(this.headerComponent);
 
     // to initialize the Object or load data from api
-    this.roomService.getRooms().subscribe(frooms => {
+    this.roomService.getRooms().subscribe((frooms) => {
       this.roomsList = frooms;
     });
     // it will log nothing, there can be possible reason
     // 1. http.get was an aysnc call
     // 2. RxJs obervable object is an iterator, it will be loading when requested means lazy fetch
-    console.log(this.roomsList)
-   
+    console.log(this.roomsList);
   }
 
   toggle(): void {
@@ -65,17 +65,21 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   addRoom(): void {
     const room: RoomObjectInfo = {
-      roomNumber: '3',
+      // roomNumber: '3',
       roomType: 'C1',
       price: 2000,
       photos: 'avs',
       checkinTime: new Date(2000, 12, 1),
-      checkoutTime:new Date(2000, 12, 2),
-      // rating: 5
+      checkoutTime: new Date(2000, 12, 2),
+      rating: 5,
     };
 
     // this.roomsList.push(room) //this will not work if the child has .onPush ChangeDetectionStrategy
-    this.roomsList = [...this.roomsList, room]; //create new instance and then send it to child
+    // this.roomsList = [...this.roomsList, room]; //create new instance and then send it to child
+    // using api to create the room in server
+    this.roomService.addRoom(room).subscribe((data) => {
+      this.roomsList = data;
+    });
   }
 
   ngAfterViewInit(): void {
@@ -89,13 +93,34 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
     const headerAtIndex1 = this.headerChildreComponent?.get(1);
     if (headerAtIndex1) {
-      headerAtIndex1.title = "Second title";
+      headerAtIndex1.title = 'Second title';
     }
-
-  
   }
 
   ngAfterViewChecked(): void {
     this.headerComponent.title = 'Kingsman Hotel-AfterViewChecked';
   }
+
+  editRoom() {
+    const room: RoomObjectInfo = {
+      roomNumber: '3',
+      roomType: 'C1',
+      price: 2000,
+      photos: 'updated',
+      checkinTime: new Date(2000, 12, 1),
+      checkoutTime: new Date(2000, 12, 2),
+      rating: 5,
+    };
+
+    this.roomService.editRoom(room).subscribe((data) => {
+      this.roomsList = data;
+    });
+  }
+
+  deleteRoom(){
+    this.roomService.deleteRoom('3').subscribe((data) => {
+      this.roomsList = data;
+    })
+  }
+  
 }

@@ -26,4 +26,19 @@ export class RoomsService {
 
     return this.http.get<RoomObjectInfo[]>('/api/rooms');
   }
+
+  addRoom(room: RoomObjectInfo){
+    return this.http.post<RoomObjectInfo[]>('/api/rooms',room)
+  }
+
+
+  editRoom(room: RoomObjectInfo){
+    return this.http.put<RoomObjectInfo[]>(`/api/rooms/${room.roomNumber}`,room)
+  }
+
+
+  deleteRoom(id:string){
+    return this.http.delete<RoomObjectInfo[]>(`/api/rooms/${id}`);
+  }
+
 }

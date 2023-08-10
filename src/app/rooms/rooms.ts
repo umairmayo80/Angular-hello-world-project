@@ -12,5 +12,5 @@ export interface RoomObjectInfo {
     photos: string;
     checkinTime: Date;
     checkoutTime: Date;
-    // rating: number;
+    rating: number;
 }
