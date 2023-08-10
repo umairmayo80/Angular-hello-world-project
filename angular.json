@@ -75,7 +75,8 @@
               "browserTarget": "hotelinvertory:build:production"
             },
             "development": {
-              "browserTarget": "hotelinvertory:build:development"
+              "browserTarget": "hotelinvertory:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

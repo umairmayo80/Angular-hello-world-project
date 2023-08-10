@@ -43,7 +43,13 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     console.log(this.headerComponent);
 
     // to initialize the Object or load data from api
-    this.roomsList = this.roomService.getRooms();
+    this.roomService.getRooms().subscribe(frooms => {
+      this.roomsList = frooms;
+    });
+    // it will log nothing, there can be possible reason
+    // 1. http.get was an aysnc call
+    // 2. RxJs obervable object is an iterator, it will be loading when requested means lazy fetch
+    console.log(this.roomsList)
    
   }
 
@@ -59,11 +65,13 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   addRoom(): void {
     const room: RoomObjectInfo = {
-      roomNumber: 3,
+      roomNumber: '3',
       roomType: 'C1',
       price: 2000,
       photos: 'avs',
       checkinTime: new Date(2000, 12, 1),
+      checkoutTime:new Date(2000, 12, 2),
+      // rating: 5
     };
 
     // this.roomsList.push(room) //this will not work if the child has .onPush ChangeDetectionStrategy
@@ -83,6 +91,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     if (headerAtIndex1) {
       headerAtIndex1.title = "Second title";
     }
+
   
   }
 
