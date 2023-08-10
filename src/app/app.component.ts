@@ -1,5 +1,5 @@
-import { Component , OnInit,ViewChild, AfterViewInit, ViewContainerRef, ElementRef} from '@angular/core';
-import { RoomsComponent } from './rooms/rooms.component';
+import { Component , OnInit,ViewChild, AfterViewInit, ViewContainerRef, ElementRef, Inject} from '@angular/core';
+import {localStorageToken} from './localStorage.token'
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,12 @@ import { RoomsComponent } from './rooms/rooms.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, AfterViewInit{
+
+  constructor(@Inject(localStorageToken) private localStorage: Storage){
+
+  }
+
+
   title = 'hotelinvertory';
   role = 'admin';
 
@@ -26,6 +32,8 @@ export class AppComponent implements OnInit, AfterViewInit{
       console.log('onInit')
       console.log(this.htmlElement)
       this.htmlElement.nativeElement.innerText = 'This text is created using ngTemplateReference'
+
+      this.localStorage.setItem('name','KingsMen-Hotel');
   }
 
   ngAfterViewInit(): void {
