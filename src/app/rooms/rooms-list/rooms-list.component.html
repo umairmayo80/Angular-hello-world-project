@@ -14,12 +14,8 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="
-          let room of rooms ;
-          let evenFlag = even;
-          let indx = index
-        "
-        [ngClass]="evenFlag ? 'even' : 'odd'"
+        *ngFor="let room of rooms; let evenFlag = even; let indx = index"
+        [ngClass]="evenFlag ? 'even' : ''"
       >
         <td>
           {{ room.roomNumber }}
@@ -47,8 +43,9 @@
           {{ room.checkinTime | date : "dd/MM/yyyy" }}
         </td>
         <td>
-            <button class="btn btn-primary" (click)="selectRoom(room)">Select
-            </button>
+          <button class="btn btn-primary" (click)="selectRoom(room)">
+            Select
+          </button>
         </td>
       </tr>
     </tbody>

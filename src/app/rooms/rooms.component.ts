@@ -36,6 +36,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   roomsList: RoomObjectInfo[] = [];
 
   // just define the dependency in the constructor and Angular will automatically fill it
+  // it will automatically create a varibale in the class and then assing it the dependency
   // public means it can be accessed in the .html file, private means it can only be accesed in the .ts file
   constructor(private roomService: RoomsService) {}
 
@@ -122,5 +123,5 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
       this.roomsList = data;
     })
   }
-  
+
 }
