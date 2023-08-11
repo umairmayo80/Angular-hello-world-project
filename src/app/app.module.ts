@@ -9,7 +9,8 @@ import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
-import {HttpClientModule} from '@angular/common/http'
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
+import { RequestInterceptor } from './request.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,13 @@ import {HttpClientModule} from '@angular/common/http'
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent] //bootstrap: [AppComponent]: This property is an array that specifies the root component that should be bootstrapped when the application starts. In this case, the "AppComponent" is the root component.
 })
 export class AppModule { }
