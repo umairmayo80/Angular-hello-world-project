@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RoomObjectInfo } from '../rooms';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { ThrowStmt } from '@angular/compiler';
 import { shareReplay } from 'rxjs/operators';
 
@@ -32,7 +32,9 @@ export class RoomsService {
     // console.log(this.roomList)
     // return this.roomList;
 
-    return this.http.get<RoomObjectInfo[]>('/api/rooms');
+    // http header, takes key value pair
+    const headers = new HttpHeaders({'token':'12345'})
+    return this.http.get<RoomObjectInfo[]>('/api/rooms', {headers: headers});
   }
 
   addRoom(room: RoomObjectInfo){
