@@ -18,6 +18,13 @@ export class RequestInterceptor implements HttpInterceptor {
     // we cannot modify the original request, so we clone it and then add new info in the clone
     const newRequest = request.clone({headers: new HttpHeaders({'tokendf': '12345abc'})})
     // now send the newRequest
-    return next.handle(newRequest);
+    // return next.handle(newRequest);
+
+
+    // we can also define custom for different request type
+    if (request.method === 'POST'){
+      //cusotom logic
+    }
+    return next.handle(newRequest)
   }
 }
