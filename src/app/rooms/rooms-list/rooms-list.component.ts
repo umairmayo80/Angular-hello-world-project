@@ -11,7 +11,7 @@ export class RoomsListComponent implements OnInit, OnChanges {
 
   // Here this input create an property named 'rooms' in the html tag 'app-rooms-list' of this component
   // Then we can pass data to this component using <app-rooms-list rooms= "data">;
-  @Input() rooms:RoomObjectInfo[] = [];
+  @Input() rooms:RoomObjectInfo[] | null = [];
 
 
   //create an output event function that will send the required data

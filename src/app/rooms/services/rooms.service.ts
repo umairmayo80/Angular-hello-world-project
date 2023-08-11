@@ -1,13 +1,21 @@
 import { Injectable } from '@angular/core';
 import { RoomObjectInfo } from '../rooms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { ThrowStmt } from '@angular/compiler';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomsService {
   roomList: RoomObjectInfo[] = [] ;
+
+  // .pipe is used to apply RxJS operators to an observable, and shareReplay(1) is used to multicast emissions while keeping a replay buffer of the most recent emission.
+  // The $ symbol at the end of the variable name getRooms$ is a common naming convention in Angular for observables. 
+  getRooms$ = this.http.get<RoomObjectInfo[]>('/api/rooms').pipe(
+    shareReplay(1)
+  )
+
   constructor(private http: HttpClient) { 
 
   }
@@ -41,4 +49,14 @@ export class RoomsService {
     return this.http.delete<RoomObjectInfo[]>(`/api/rooms/${id}`);
   }
 
+  getPhotos(){
+    const request = new HttpRequest(
+      'GET',
+      'https://jsonplaceholder.typicode.com/photos',
+      {
+        reportProgress: true,
+      }
+    );
+    return this.http.request(request);
+  }
 }

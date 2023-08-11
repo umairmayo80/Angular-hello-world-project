@@ -5,7 +5,6 @@
 <app-header></app-header>
 <app-header></app-header>
 
-
 <div [hidden]="hideRooms">
   <p>Number of rooms: <span [innerText]="numberOfRooms"></span></p>
   <!-- [] is called box syntax-->
@@ -21,21 +20,25 @@
   <!-- {{ roomsList | json }} -->
 </div>
 
-
 <div>
-    <button (click)="addRoom()">Add new Room</button>
+  <button (click)="addRoom()">Add new Room</button>
 </div>
 
-<div>
-    <app-rooms-list [rooms]="roomsList" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+<h3 style="background-color: red">
+  {{ getError$ | async }}
+</h3>
+<div *ngIf="rooms$ | async as rooms">
+  <app-rooms-list
+    [rooms]="rooms"
+    (selectedRoom)="selectRoom($event)"
+  ></app-rooms-list>
 </div>
 
 <button (click)="toggle()">Toggle Rooms Info visibility</button>
 <button (click)="editRoom()">Edit Room</button>
 <button (click)="deleteRoom()">Delete Room</button>
 
-
 <div *ngIf="selectedRoom">
-    <p>selected room</p>
-    {{selectedRoom | json}}
+  <p>selected room</p>
+  {{ selectedRoom | json }}
 </div>

@@ -11,6 +11,9 @@ import {
 import { Room, RoomObjectInfo } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
+import { HttpEventType } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { Subject, of } from 'rxjs';
 
 @Component({
   selector: 'app-rooms',
@@ -40,6 +43,17 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   // public means it can be accessed in the .html file, private means it can only be accesed in the .ts file
   constructor(private roomService: RoomsService) {}
 
+  error$ = new Subject<string>();
+
+  getError$ = this.error$.asObservable();
+  rooms$ = this.roomService.getRooms$.pipe(
+    catchError((err)=>{
+      console.log(err.message);
+      this.error$.next(err.message)
+      return of([]);
+    })
+  );
+
   ngOnInit(): void {
     // this will only be available if the viewChild is static true
     console.log(this.headerComponent);
@@ -52,6 +66,30 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     // 1. http.get was an aysnc call
     // 2. RxJs obervable object is an iterator, it will be loading when requested means lazy fetch
     console.log(this.roomsList);
+
+    this.roomService.getPhotos().subscribe((event) => {
+      switch (event.type) {
+        case HttpEventType.Sent: {
+          console.log('Request successfully sent');
+          break;
+        }
+
+        case HttpEventType.ResponseHeader: {
+          console.log('request sucess');
+          break;
+        }
+
+        case HttpEventType.DownloadProgress: {
+          console.log('bytes loaded till now:' + event.loaded);
+          break;
+        }
+
+        case HttpEventType.Response: {
+          console.log('Request Complete');
+          break;
+        }
+      }
+    });
   }
 
   toggle(): void {
@@ -118,10 +156,9 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     });
   }
 
-  deleteRoom(){
+  deleteRoom() {
     this.roomService.deleteRoom('3').subscribe((data) => {
       this.roomsList = data;
-    })
+    });
   }
-
 }
