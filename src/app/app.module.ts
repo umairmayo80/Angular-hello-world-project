@@ -21,6 +21,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
+import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
+import {FormsModule} from '@angular/forms'
 
 // initFactory funtion
 function initFactory(initService: InitService){
@@ -37,7 +39,8 @@ function initFactory(initService: InitService){
     EmployeeComponent,
     AppNavComponent,
     NotfoundComponent,
-    RoomsBookingComponent
+    RoomsBookingComponent,
+    RoomsAddComponent
   ], //This property is an array that specifies the components, directives, and pipes that belong to this module.
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ function initFactory(initService: InitService){
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FormsModule
   ],
   providers: [
     {

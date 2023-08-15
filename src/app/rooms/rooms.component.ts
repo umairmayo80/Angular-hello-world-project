@@ -108,6 +108,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
       roomType: 'C1',
       price: 2000,
       photos: 'avs',
+      amenities:'wifi',
       checkinTime: new Date(2000, 12, 1),
       checkoutTime: new Date(2000, 12, 2),
       rating: 5,
@@ -144,6 +145,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     const room: RoomObjectInfo = {
       roomNumber: '3',
       roomType: 'C1',
+      amenities:'wifi',
       price: 2000,
       photos: 'updated',
       checkinTime: new Date(2000, 12, 1),
