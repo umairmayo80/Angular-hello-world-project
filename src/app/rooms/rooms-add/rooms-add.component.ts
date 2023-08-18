@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomObjectInfo } from '../rooms';
 import { RoomsService } from '../services/rooms.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-rooms-add',
@@ -9,6 +10,8 @@ import { RoomsService } from '../services/rooms.service';
 })
 export class RoomsAddComponent implements OnInit {
 
+  // roomsFormsTemplateReference:view
+  successMessage:string = '';
   constructor(private roomService: RoomsService) { }
 
   room: RoomObjectInfo = {
@@ -26,10 +29,12 @@ export class RoomsAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  AddRoom() {
+  AddRoom(roomsForm: NgForm) {
     this.roomService.addRoom(this.room).subscribe(
       (data)=> {
         console.log(data)
+        this.successMessage = 'Room added successfully!'
+        roomsForm.reset();
       }
     )
   }
