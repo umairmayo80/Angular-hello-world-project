@@ -22,7 +22,8 @@ import { MatListModule } from '@angular/material/list';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
 import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
-import {FormsModule} from '@angular/forms'
+import {FormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login.component'
 
 // initFactory funtion
 function initFactory(initService: InitService){
@@ -40,7 +41,8 @@ function initFactory(initService: InitService){
     AppNavComponent,
     NotfoundComponent,
     RoomsBookingComponent,
-    RoomsAddComponent
+    RoomsAddComponent,
+    LoginComponent
   ], //This property is an array that specifies the components, directives, and pipes that belong to this module.
   imports: [
     BrowserModule,
