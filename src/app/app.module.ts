@@ -43,7 +43,7 @@ function initFactory(initService: InitService){
   ], //This property is an array that specifies the components, directives, and pipes that belong to this module. this is for dependency injection
   imports: [
     BrowserModule,
-    AppRoutingModule,
+
     BrowserAnimationsModule,
     HttpClientModule,
     LayoutModule,
@@ -54,7 +54,8 @@ function initFactory(initService: InitService){
     MatListModule,
     FormsModule,
     RoomsModule,
-    HeaderModule
+    HeaderModule,
+    AppRoutingModule, // modules are loaded sequential order. If any feature module has routing then it must be loaded before appRouting module to avoid logical routing errors
   ],
   providers: [
     {
