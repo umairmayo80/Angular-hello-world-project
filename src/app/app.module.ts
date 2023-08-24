@@ -22,7 +22,7 @@ import {FormsModule} from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './hover.directive';
 import { EmailvalidatorDirective } from './emailValidator/emailvalidator.directive'
-import { RoomsModule } from './rooms/rooms.module';
+// import { RoomsModule } from './rooms/rooms.module';
 import { HeaderModule } from './header/header.module';
 
 // initFactory funtion
@@ -53,7 +53,7 @@ function initFactory(initService: InitService){
     MatIconModule,
     MatListModule,
     FormsModule,
-    RoomsModule,
+    // RoomsModule,
     HeaderModule,
     AppRoutingModule, // modules are loaded sequential order. If any feature module has routing then it must be loaded before appRouting module to avoid logical routing errors
   ],

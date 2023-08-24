@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'rooms/add', component: RoomsAddComponent },
   // the order of routes matter alot
   {
-    path: 'rooms',
+    path: '', //default route for lazy loading support
     component: RoomsComponent,
     children: [
       // { path: 'add', component: RoomsAddComponent }, it will also work and it must be before the dynamic route
