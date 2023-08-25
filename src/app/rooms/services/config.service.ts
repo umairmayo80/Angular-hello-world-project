@@ -6,5 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ConfigService {
 
-  constructor() { }
+  constructor() { 
+    console.log("config-service-constructor called")
+  }
 }

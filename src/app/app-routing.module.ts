@@ -3,16 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './login/login.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { path: 'employee', component: EmployeeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'search', component: SearchComponent },
   {
     path: 'rooms',
     loadChildren: () =>
       import('./rooms/rooms.module').then((m) => m.RoomsModule),
   },
-  { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule) },
+  {
+    path: 'booking',
+    loadChildren: () =>
+      import('./booking/booking.module').then((m) => m.BookingModule),
+  },
 
   // keep all the valid routes above the wildcard route
   { path: '**', component: NotfoundComponent }, //wildcard to handle paths that don`t exist

@@ -24,6 +24,7 @@ import { HoverDirective } from './hover.directive';
 import { EmailvalidatorDirective } from './emailValidator/emailvalidator.directive'
 // import { RoomsModule } from './rooms/rooms.module';
 import { HeaderModule } from './header/header.module';
+import { RouteConfigToken } from './rooms/services/routeConfig.service';
 
 // initFactory funtion
 function initFactory(initService: InitService){
@@ -58,6 +59,10 @@ function initFactory(initService: InitService){
     AppRoutingModule, // modules are loaded sequential order. If any feature module has routing then it must be loaded before appRouting module to avoid logical routing errors
   ],
   providers: [
+    {
+      provide: RouteConfigToken,
+      useValue: {title: "Home"}
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
